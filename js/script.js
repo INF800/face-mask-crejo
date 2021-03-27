@@ -8,36 +8,6 @@
 		background: 'hsl(35, 60 %, 50 %)', // bg color when only mask is displayed. 
 	}];
 
-	var videoFormats = ['mov', 'm4v', 'mp4'];
-	// var imageFormats = ['png', 'jpg'];
-	var assets = [];
-
-	for (var i = 0; i < entries.length; i++) {
-		var obj = entries[i];
-		var el;
-		//console.log(videoFormats.indexOf(obj.entry.split('.')[2]), obj.entry.split('.')[2])
-		//-1, "png"
-		if (videoFormats.indexOf(obj.entry.split('.')[2]) > -1) {
-			el = document.createElement('video');
-			el.setAttribute('playsinline', true);
-			el.setAttribute('loop', true);
-			el.setAttribute('muted', true);
-			el.setAttribute('autoplay', true);
-			el.setAttribute('preload', 'auto');
-			assets.push(new Promise(res => {
-				el.onloadeddata = res;
-			}));
-		} else {
-			el = document.createElement('img');
-			assets.push(new Promise(res => {
-				el.onload = res;
-			}));
-		}
-		el.src = obj.entry;
-		el.classList.add('texture');
-		el.setAttribute('id', obj.handle)
-		carousel.appendChild(el);
-	}
 
 	const toggleBtn = document.querySelector('#visibilityToggle');
 	const toggleBtnLabel = document.querySelector('#visibilityToggle > span');
@@ -112,7 +82,6 @@
 			});
 
 			//loaderMsg.textContent = 'Load media';
-			// await Promise.all(assets);
 
 			renderPredictions();
 		} catch (e) {
