@@ -13,6 +13,7 @@
 	const toggleBtnLabel = document.querySelector('#visibilityToggle > span');
 
 	function toggleWebcamVisibility(e) {
+		console.log(webcam)
 		toggleBtn.classList.toggle('on');
 		webcam.classList.toggle('visible');
 		if (toggleBtn.classList.contains('on')) {
@@ -33,7 +34,7 @@
 
 		if (predictions.length > 0) {
 			const positionBufferData = predictions[0].scaledMesh.reduce((acc, pos) => acc.concat(pos), []);
-			// console.log('[positionBufferData]', positionBufferData) 
+			// console.log('[positionBufferData]', positionBufferData)
 			// flattened `predictions.scaledMesh` of len (468keypoints * 3coords) = `1404`
 
 			if (!faceCanvas) {
